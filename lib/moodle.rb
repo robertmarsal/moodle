@@ -27,6 +27,7 @@ module Moodle
     configure(config)
   end
 
+  # Obtain the global configuration
   def self.config
     @@config
   end
