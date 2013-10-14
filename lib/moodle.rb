@@ -1,19 +1,23 @@
 $:.unshift File.dirname(__FILE__)
 
-require 'moodle/api'
+require 'moodle/client'
 require 'yaml'
 
 module Moodle
   @@config = {
     :username => nil,
-    :password => nil
+    :password => nil,
+    :token => nil,
+    :protocol => nil,
+    :domain => nil,
+    :service => nil
   }
 
   @valid_config_keys = @@config.keys
 
   # Configuration is for the instance only
   def self.new(options={})
-    Moodle::API.new(options)
+    Moodle::Client.new(options)
   end
 
   # Configure at global level trough hash
