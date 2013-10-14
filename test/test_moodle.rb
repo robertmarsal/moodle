@@ -3,9 +3,9 @@ require 'moodle'
 
 class MoodleTest < Test::Unit::TestCase
   # Test creating new instance
-  def test_new
-    client = Moodle.new
-    assert client.instance_of?(Moodle::API)
+  def test_new_with_token
+    client = Moodle.new(:token => 'test')
+    assert client.instance_of?(Moodle::Client)
   end
 
   # Test that global configuration can be set with hash

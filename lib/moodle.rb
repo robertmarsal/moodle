@@ -10,7 +10,8 @@ module Moodle
     :token => nil,
     :protocol => nil,
     :domain => nil,
-    :service => nil
+    :service => nil,
+    :format => 'json'
   }
 
   @valid_config_keys = @@config.keys
