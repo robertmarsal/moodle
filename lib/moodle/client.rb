@@ -43,10 +43,12 @@ module Moodle
 
     # Make a request using the desired protocol and format
     def request(params={})
-      params.merge!(:wstoken => @token, :moodlewsrestformat => @format)
+      params.merge!(
+        :wstoken => @token,
+        :moodlewsrestformat => @format,
+        :wsfunction => caller[0][/`.*'/][1..-2]
+      )
       @client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
     end
   end
 end
-
-
