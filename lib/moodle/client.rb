@@ -6,7 +6,7 @@ module Moodle
   class Client
     include Moodle::Service::User
 
-    attr_reader :username, :password, :token, :protocol, :domain, :service
+    attr_reader :username, :password, :domain, :protocol, :service, :format, :token
 
     def initialize(options={})
       @username = options[:username] || Moodle.config[:username]
@@ -16,22 +16,29 @@ module Moodle
       @service  = options[:service]  || Moodle.config[:service]
       @format   = options[:format]   || Moodle.config[:format]
       @token    = options[:token]    || Moodle.config[:token]
-      
+
       # If no token is provided generate one
       if @token.nil?
-        @token = self.token
-      end
-
-      # Instantiate the client protocol
-      case @protocol
-      when 'rest'
-        @client = Moodle::Protocol::Rest.new
+        @token = self.obtain_token
       end
     end
 
+    # Retuns a Moodle::Protocol client instance
+    def client
+      if @client.nil?
+        # Instantiate the client protocol
+        case @protocol
+        when 'rest'
+          @client = Moodle::Protocol::Rest.new
+        else
+          @client = Moodle::Protocol::Rest.new
+        end
+      end
+      @client
+    end
+
     # Obtains a token from the username and password
-    def token
-      client = Moodle::Protocol::Rest.new
+    def obtain_token
       response = client.request(@domain + '/login/token.php', {
         :username => @username, 
         :password => @password, 
@@ -48,7 +55,7 @@ module Moodle
         :moodlewsrestformat => @format,
         :wsfunction => caller[0][/`.*'/][1..-2]
       )
-      @client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
+      client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
     end
   end
 end
