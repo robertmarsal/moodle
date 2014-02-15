@@ -3,7 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/robertboloc/moodle.png)](https://codeclimate.com/github/robertboloc/moodle)
 [![Gem Version](https://badge.fury.io/rb/moodle.png)](http://badge.fury.io/rb/moodle)
 
-Ruby gem to interact with the Moodle via web services.
+Ruby gem to interact with Moodle via web services.
 
 ## Table of contents
 - [Installation](#installation)
