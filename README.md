@@ -1,4 +1,6 @@
 # Moodle
+[![Build Status](https://travis-ci.org/robertboloc/moodle.png)](https://travis-ci.org/robertboloc/moodle)
+
 Ruby gem to interact with the Moodle via web services.
 
 ## Table of contents
