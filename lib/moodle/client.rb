@@ -1,5 +1,6 @@
 require 'moodle/protocols/rest'
 require 'moodle/services/user'
+require 'hashie'
 require 'json'
 
 module Moodle
@@ -44,8 +45,8 @@ module Moodle
         :password => @password, 
         :service  => @service
       })
-      response = JSON.parse(response)
-      response['token']
+      # @TODO: deal with error response
+      response.token
     end
 
     # Make a request using the desired protocol and format
@@ -55,7 +56,10 @@ module Moodle
         :moodlewsrestformat => @format,
         :wsfunction => caller[0][/`.*'/][1..-2]
       )
-      client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
+      response = client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
+      array_response = JSON.parse response
+      hash_response = Hash[*array_response]
+      Hashie::Mash.new hash_response
     end
   end
 end
