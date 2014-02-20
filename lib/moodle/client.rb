@@ -1,11 +1,13 @@
 require 'moodle/protocols/rest'
 require 'moodle/services/user'
+require 'moodle/services/webservice'
 require 'hashie'
 require 'json'
 
 module Moodle
   class Client
     include Moodle::Service::User
+    include Moodle::Service::Webservice
 
     attr_reader :username, :password, :domain, :protocol, :service, :format, :token
 

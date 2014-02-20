@@ -98,6 +98,7 @@ user.lastaccess           # => 1392471263
 user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
 user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
 ```
+
 ### core_user_get_users
 Search for users matching the criteria
 ```ruby
@@ -114,4 +115,29 @@ users.each do |user|
   user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
   user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
 end
+```
+
+### core_webservice_get_site_info
+Return some site info / user info / list web service functions
+```ruby
+info = client.core_webservice_get_site_info
+
+info.sitename       # => Webservice test
+info.username       # => test
+info.firstname      # => Test
+info.lastname       # => Webservice
+info.fullname       # => Test Webservice
+info.lang           # => en
+info.userid         # => 3
+info.siteurl        # => http://mydomain/moodle
+info.userpictureurl # => http://mydomain/moodle/pluginfile.php/15/user/icon/f1
+info.functions.each do |f|
+  f.name            # => core_user_get_users_by_field
+  f.version         # => 2013111800.09
+end
+info.downloadfiles  # => 0
+info.uploadfiles    # => 0
+info.release        # => 2.6+ (Build: 20140110)
+info.version        # => 2013111800.09
+info.mobilecssurl   # => ""
 ```
