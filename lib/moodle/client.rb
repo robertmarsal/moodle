@@ -45,8 +45,9 @@ module Moodle
         :password => @password, 
         :service  => @service
       })
-      # @TODO: deal with error response
-      response.token
+
+      parsed = JSON.parse(response)
+      parsed['token']
     end
 
     # Make a request using the desired protocol and format
@@ -57,9 +58,8 @@ module Moodle
         :wsfunction => caller[0][/`.*'/][1..-2]
       )
       response = client.request(@domain + '/webservice/' + @protocol + '/server.php', params)
-      array_response = JSON.parse response
-      hash_response = Hash[*array_response]
-      Hashie::Mash.new hash_response
+
+      JSON.parse(response)
     end
   end
 end

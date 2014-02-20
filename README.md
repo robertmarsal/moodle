@@ -98,3 +98,20 @@ user.lastaccess           # => 1392471263
 user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
 user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
 ```
+### core_user_get_users
+Search for users matching the criteria
+```ruby
+users = client.core_user_get_users({:email => 'suchemail@test.com'})
+
+users.each do |user|
+  user.id                   # => 2,
+  user.firstname            # => Test
+  user.lastname             # => User
+  user.fullname             # => Test User
+  user.email                # => suchemail@test.com
+  user.firstaccess          # => 139240932,
+  user.lastaccess           # => 1392471263
+  user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
+  user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
+end
+```

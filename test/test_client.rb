@@ -26,9 +26,7 @@ class ClientTest < Test::Unit::TestCase
   # Test obtaining a token
   def test_obtain_token
     client = Moodle::Protocol::Rest.new
-    token_struct = Struct.new(:token)
-    token = token_struct.new('12345')
-    client.stubs(:request).returns(token)
+    client.stubs(:request).returns('{"token" : "12345"}')
     moodle_client = Moodle::Client.new({:token => 'dummy', :domain => 'test'})
     moodle_client.stubs(:client).returns(client)
     assert_equal '12345', moodle_client.obtain_token()
