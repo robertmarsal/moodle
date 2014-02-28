@@ -83,7 +83,7 @@ Moodle implements 4 protocols: AMF, REST, SOAP, XML-RPC. Currently this gem only
 ## Functions
 These are the currently implemented web services functions:
 
-### User
+### Users
 
 #### core_user_get_users_by_field
 Retrieve users information for a specified unique field
@@ -119,7 +119,7 @@ users.each do |user|
 end
 ```
 
-### Webservice
+### Webservices
 
 #### core_webservice_get_site_info
 Return some site info / user info / list web service functions
