@@ -119,6 +119,47 @@ users.each do |user|
 end
 ```
 
+### Courses
+
+#### core_course_get_courses
+Retrieve courses details by ids
+```ruby
+courses = client.core_course_get_courses([2, 3])
+
+courses.each do |course|
+  course.id                # => 2
+  course.shortname         # => T
+  course.categoryid        # => 1
+  course.categorysortorder # => 10002
+  course.fullname          # => Test
+  course.idnumber          # => TX
+  course.summary           # => test
+  course.summaryformat     # => 1
+  course.format            # => weeks
+  course.showgrades        # => 1
+  course.newsitems         # => 5
+  course.startdate         # => 1393718400
+  course.numsections       # => 10
+  course.maxbytes          # => 0
+  course.showreports       # => 0
+  course.visible           # => 1
+  course.hiddensections    # => 0
+  course.groupmode         # => 0
+  course.groupmodeforce    # => 0
+  course.defaultgroupingid # => 0
+  course.timecreated       # => 1393693092
+  course.timemodified      # => 1393693092
+  course.enablecompletion  # => 0
+  course.completionnotify  # => 0
+  course.lang              # => en
+  course.forcetheme        # => test
+  course.courseformatoptions.each do |format|
+    format.name            # => numsections
+    value                  # => 10
+  end
+end
+```
+
 ### Webservices
 
 #### core_webservice_get_site_info
