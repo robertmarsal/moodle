@@ -9,7 +9,7 @@ Ruby gem to interact with Moodle via web services.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Protocols](#protocols)
-- [Functions](#functions)
+- [Services](#services)
 
 ## Installation
 ```shell
@@ -80,42 +80,22 @@ Once you have an instance of the client it's only a matter of calling the moodle
 ## Protocols
 Moodle implements 4 protocols: AMF, REST, SOAP, XML-RPC. Currently this gem only supports REST.
 
-## Functions
+## Services
 These are the currently implemented web services functions:
 
-### Users
+### Cohorts
 
-#### core_user_get_users_by_field
-Retrieve users information for a specified unique field
+#### core_cohort_get_cohorts
+Returns cohort details
 ```ruby
-user = client.core_user_get_users_by_field('id', [2])
+cohorts = client.core_cohort_get_cohorts([1])
 
-user.id                   # => 2,
-user.firstname            # => Test
-user.lastname             # => User
-user.fullname             # => Test User
-user.email                # => webservicetester@gmail.com
-user.firstaccess          # => 139240932,
-user.lastaccess           # => 1392471263
-user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
-user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
-```
-
-#### core_user_get_users
-Search for users matching the criteria
-```ruby
-users = client.core_user_get_users({:email => 'suchemail@test.com'})
-
-users.each do |user|
-  user.id                   # => 2,
-  user.firstname            # => Test
-  user.lastname             # => User
-  user.fullname             # => Test User
-  user.email                # => suchemail@test.com
-  user.firstaccess          # => 139240932,
-  user.lastaccess           # => 1392471263
-  user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
-  user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
+cohorts.each do |cohort|
+  cohort.id                # => 1
+  cohort.name              # => Test
+  cohort.idnumber          # => 1
+  cohort.description       # => Test Cohort
+  cohort.descriptionformat # => 1
 end
 ```
 
@@ -160,6 +140,42 @@ courses.each do |course|
 end
 ```
 
+### Users
+
+#### core_user_get_users_by_field
+Retrieve users information for a specified unique field
+```ruby
+user = client.core_user_get_users_by_field('id', [2])
+
+user.id                   # => 2,
+user.firstname            # => Test
+user.lastname             # => User
+user.fullname             # => Test User
+user.email                # => webservicetester@gmail.com
+user.firstaccess          # => 139240932,
+user.lastaccess           # => 1392471263
+user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
+user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
+```
+
+#### core_user_get_users
+Search for users matching the criteria
+```ruby
+users = client.core_user_get_users({:email => 'suchemail@test.com'})
+
+users.each do |user|
+  user.id                   # => 2,
+  user.firstname            # => Test
+  user.lastname             # => User
+  user.fullname             # => Test User
+  user.email                # => suchemail@test.com
+  user.firstaccess          # => 139240932,
+  user.lastaccess           # => 1392471263
+  user.profileimageurlsmall # => http://mydomain/moodle/pluginfile.php/5/user/icon/f2
+  user.profileimageurl      # => http://mydomain/moodle/pluginfile.php/5/user/icon/f1
+end
+```
+
 ### Webservices
 
 #### core_webservice_get_site_info
@@ -185,20 +201,4 @@ info.uploadfiles    # => 0
 info.release        # => 2.6+ (Build: 20140110)
 info.version        # => 2013111800.09
 info.mobilecssurl   # => ""
-```
-
-### Cohorts
-
-#### core_cohort_get_cohorts
-Returns cohort details
-```ruby
-cohorts = client.core_cohort_get_cohorts([1])
-
-cohorts.each do |cohort|
-  cohort.id                # => 1
-  cohort.name              # => Test
-  cohort.idnumber          # => 1
-  cohort.description       # => Test Cohort
-  cohort.descriptionformat # => 1
-end
 ```
