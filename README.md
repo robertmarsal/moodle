@@ -186,3 +186,19 @@ info.release        # => 2.6+ (Build: 20140110)
 info.version        # => 2013111800.09
 info.mobilecssurl   # => ""
 ```
+
+### Cohorts
+
+#### core_cohort_get_cohorts
+Returns cohort details
+```ruby
+cohorts = client.core_cohort_get_cohorts([1])
+
+cohorts.each do |cohort|
+  cohort.id                # => 1
+  cohort.name              # => Test
+  cohort.idnumber          # => 1
+  cohort.description       # => Test Cohort
+  cohort.descriptionformat # => 1
+end
+```
