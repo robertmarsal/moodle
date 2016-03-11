@@ -10,4 +10,8 @@ Gem::Specification.new do |spec|
   spec.homepage    =
     'http://robertboloc.github.com/moodle'
   spec.license     = 'MIT'
+  
+  spec.add_runtime_dependency 'rest-client', '~> 1.8'
+  spec.add_runtime_dependency 'sanitize', '~> 1.4'
+  spec.add_runtime_dependency 'hashie', '~> 3.4'
 end
