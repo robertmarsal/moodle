@@ -12,6 +12,10 @@ Gem::Specification.new do |spec|
   spec.license     = 'MIT'
   
   spec.add_runtime_dependency 'rest-client', '~> 1.8'
-  spec.add_runtime_dependency 'sanitize', '~> 1.4'
   spec.add_runtime_dependency 'hashie', '~> 3.4'
+  spec.add_runtime_dependency 'json', '~> 1.8'
+
+  spec.add_development_dependency 'rake', '~> 11.1'
+  spec.add_development_dependency 'simplecov', '~> 0.11'
+  spec.add_development_dependency 'mocha', '~> 1.1'
 end
